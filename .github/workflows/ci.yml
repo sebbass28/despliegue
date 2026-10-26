@@ -20,4 +20,4 @@ jobs:
         run: npm ci
 
       - name: Validar HTML (html-validate)
-        run: npx html-validate index.html
+        run: npx html-validate app/index.html
