@@ -17,6 +17,7 @@ jobs:
           cache: 'npm'
 
       - name: Instalar dependencias
+        working-directory: ./Despliegue-servicios-Administrados
         run: npm ci
 
       - name: Validar HTML (html-validate)
