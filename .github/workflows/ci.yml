@@ -20,13 +20,17 @@ jobs:
         run: npm ci
 
       - name: Validar HTML (html-validate)
+        working-directory: ./Despliegue-servicios-Administrados
         run: npx html-validate index.html
 
       - name: Linting CSS (stylelint)
+        working-directory: ./Despliegue-servicios-Administrados
         run: npx stylelint "css/**/*.css"
 
       - name: Linting JavaScript (eslint)
+        working-directory: ./Despliegue-servicios-Administrados
         run: npx eslint js/
 
       - name: Ejecutar tests unitarios
+        working-directory: ./Despliegue-servicios-Administrados
         run: npm  test
