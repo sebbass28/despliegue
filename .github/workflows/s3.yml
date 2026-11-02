@@ -22,7 +22,7 @@ jobs:
 
             - name: Copiar los archivos al bucket
               run: |
-                aws s3 sync ./Despliegue-Servicios-Administrados/ s3://login-sebastian-2627 --delete \
+                aws s3 sync ./Despliegue-Servicios-Administrados/ s3://login-cicd-sebastian-2627 --delete \
                 --exclude ".git/*" \
                 --exclude ".github/*" \
                 --exclude "node_modules/*" \
