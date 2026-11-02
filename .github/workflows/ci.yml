@@ -25,8 +25,8 @@ jobs:
       - name: Linting CSS (stylelint)
         run: npx stylelint "css/**/*.css"
 
-#      - name: Linting JavaScript (eslint)
-#        run: npx eslint js/
+      - name: Linting JavaScript (eslint)
+        run: npx eslint js/
 
-#      - name: Ejecutar tests unitarios
-#        run: npm test
+      - name: Ejecutar tests unitarios
+        run: npm  test

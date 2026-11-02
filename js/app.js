@@ -1,6 +1,4 @@
-const DEMO_USERS = [
-  { email: 'alumno@instituto.es', password: 'Alumno123!' }
-];
+import { authenticate, validateCredentials } from './login-logic.js';
 
 const form    = document.getElementById('loginForm');
 const emailEl = document.getElementById('email');
@@ -8,30 +6,22 @@ const pwdEl   = document.getElementById('password');
 const formMsg = document.getElementById('formMsg');
 
 function validate() {
-  let valid = true;
   const emailErr = document.getElementById('emailError');
   const pwdErr   = document.getElementById('pwdError');
   emailErr.textContent = '';
   pwdErr.textContent   = '';
-  if (!emailEl.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-    emailErr.textContent = 'Introduce un correo válido.';
-    valid = false;
-  }
-  if (pwdEl.value.length < 8) {
-    pwdErr.textContent = 'La contraseña debe tener mínimo 8 caracteres.';
-    valid = false;
-  }
-  return valid;
+  const errors = validateCredentials(emailEl.value, pwdEl.value);
+  emailErr.textContent = errors.email || '';
+  pwdErr.textContent = errors.password || '';
+  return Object.keys(errors).length === 0;
 }
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   if (!validate()) return;
-  const user = DEMO_USERS.find(
-    u => u.email === emailEl.value && u.password === pwdEl.value
-  );
-  formMsg.textContent = user
+  const validUser = authenticate(emailEl.value, pwdEl.value);
+  formMsg.textContent = validUser
     ? '✅ Acceso correcto. Bienvenido/a!'
     : '❌ Credenciales incorrectas.';
-  formMsg.style.color = user ? 'green' : 'red';
+  formMsg.style.color = validUser ? 'green' : 'red';
 });
